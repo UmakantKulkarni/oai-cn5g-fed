@@ -146,6 +146,35 @@ CREATE TABLE `AuthenticationSubscription` (
   `supi` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DELIMITER //
+
+CREATE PROCEDURE AuthUsers()
+BEGIN
+    DECLARE i INT DEFAULT 0;
+    WHILE i < 1200 DO
+        SET @ueid := 208930000000001 + i;
+        SET @supi := 208930000000001 + i;
+
+        INSERT INTO `AuthenticationSubscription` (
+            `ueid`, `authenticationMethod`, `encPermanentKey`, `protectionParameterId`,
+            `sequenceNumber`, `authenticationManagementField`, `algorithmId`, `encOpcKey`,
+            `encTopcKey`, `vectorGenerationInHss`, `n5gcAuthMethod`,
+            `rgAuthenticationInd`, `supi`)
+        VALUES (
+            @ueid, '5G_AKA', '465B5CE8B199B49FAA5F0A2EE238A6BC', '465B5CE8B199B49FAA5F0A2EE238A6BC',
+            '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000',
+            'milenage', 'E8ED289DEBA952E4283B54E88E6183CA', NULL, NULL, NULL, NULL, @supi
+        );
+
+        SET i = i + 1;
+    END WHILE;
+END;
+
+//
+
+DELIMITER ;
+
+
 --
 -- Dumping data for table `AuthenticationSubscription`
 --
@@ -176,7 +205,7 @@ INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, `encPe
 INSERT INTO `AuthenticationSubscription` (`ueid`, `authenticationMethod`, `encPermanentKey`, `protectionParameterId`, `sequenceNumber`, `authenticationManagementField`, `algorithmId`, `encOpcKey`, `encTopcKey`, `vectorGenerationInHss`, `n5gcAuthMethod`, `rgAuthenticationInd`, `supi`) VALUES
 ('001010000000112', '5G_AKA', 'fec86ba6eb707ed08905757b1bb44b8f', 'fec86ba6eb707ed08905757b1bb44b8f', '{\"sqn\": \"000000000020\", \"sqnScheme\": \"NON_TIME_BASED\", \"lastIndexes\": {\"ausf\": 0}}', '8000', 'milenage', 'C42449363BBAD02B66D16BC975D77CC1', NULL, NULL, NULL, NULL, '001010000000112');
 
-
+CALL AuthUsers();
 -- --------------------------------------------------------
 
 --
@@ -316,6 +345,31 @@ ALTER TABLE `SmfRegistrations`
 ALTER TABLE `SmfSelectionSubscriptionData`
   ADD PRIMARY KEY (`ueid`,`servingPlmnid`) USING BTREE;
 
+
+DELIMITER //
+
+CREATE PROCEDURE SmUsers()
+BEGIN
+    DECLARE i INT DEFAULT 0;
+    WHILE i < 1200 DO
+        SET @ueid := 208930000000001 + i;
+        SET @supi := 208930000000001 + i;
+
+        INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`)
+        VALUES (
+            @ueid, '20893', '{\"sst\": 1, \"sd\": \"16777215\"}',
+            '{\"default\":{\"pduSessionTypes\":{\"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 5,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"100Mbps\", \"downlink\":\"100Mbps\"}}}'
+        );
+
+        SET i = i + 1;
+    END WHILE;
+END;
+
+//
+
+DELIMITER ;
+
+
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -347,7 +401,7 @@ INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singl
 INSERT INTO `SessionManagementSubscriptionData` (`ueid`, `servingPlmnid`, `singleNssai`, `dnnConfigurations`) VALUES 
 ('001010000000112', '00101', '{\"sst\": 1, \"sd\": \"16777215\"}','{\"oai\":{\"pduSessionTypes\":{ \"defaultSessionType\": \"IPV4\"},\"sscModes\": {\"defaultSscMode\": \"SSC_MODE_1\"},\"5gQosProfile\": {\"5qi\": 6,\"arp\":{\"priorityLevel\": 1,\"preemptCap\": \"NOT_PREEMPT\",\"preemptVuln\":\"NOT_PREEMPTABLE\"},\"priorityLevel\":1},\"sessionAmbr\":{\"uplink\":\"1000Mbps\", \"downlink\":\"1000Mbps\"}}}');
 
-
+CALL SmUsers();
 
 --
 -- AUTO_INCREMENT for table `SdmSubscriptions`
