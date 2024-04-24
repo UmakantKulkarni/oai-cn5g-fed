@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ran
+spec:
+  selector:
+    matchLabels:
+      app: ran
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ran
+    spec:
+      containers:
+        - name: ran
+          image: "umakantk/ueransim:ztx_01"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          command: ["/bin/sh"]
+          args: ["-c", "sleep infinity"]
+          env:
+            - name: PCS_SETUP_TUN_INTF
+              value: false
