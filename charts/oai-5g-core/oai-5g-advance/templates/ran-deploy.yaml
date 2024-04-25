@@ -1,7 +1,8 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ran
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
@@ -22,4 +23,4 @@ spec:
           args: ["-c", "sleep infinity"]
           env:
             - name: PCS_SETUP_TUN_INTF
-              value: false
+              value: "false"
