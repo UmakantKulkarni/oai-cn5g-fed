@@ -4,6 +4,18 @@ global:
   waitForNRF: true
   http2Param: "--http2-prior-knowledge"  # if waitForNRF is true and http2 is used for all NF then this param is needed
   timeout: 1
+ztx:
+  enabled: true
+  encryption: true
+  tcp: true
+  udp: true
+  sctp: true
+  name: "ztx"
+  image:
+    repository: umakantk/ztx
+    pullPolicy: Always
+    tag: "v1"
+    initTag: "init"  
 mysql:
   enabled: true
   imagePullPolicy: IfNotPresent

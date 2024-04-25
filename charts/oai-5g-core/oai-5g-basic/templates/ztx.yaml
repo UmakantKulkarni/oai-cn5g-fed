@@ -1,0 +1,66 @@
+{{- define "tcpRule" -}}
+iptables -t mangle -A PREROUTING -p tcp -m mark ! --mark 15 -j NFQUEUE --queue-num 0 ; iptables -t mangle -A OUTPUT -p tcp -m mark ! --mark 15 -j NFQUEUE --queue-num 0
+{{- end }}
+
+{{- define "udpRule" -}}
+iptables -t mangle -A PREROUTING -p udp ! --sport 53 -m mark ! --mark 15 -j NFQUEUE --queue-num 0 ; iptables -t mangle -A OUTPUT -p udp ! --dport 53 -m mark ! --mark 15 -j NFQUEUE --queue-num 0
+{{- end }}
+
+{{- define "sctpRule" -}}
+iptables -t mangle -A PREROUTING -p sctp -m mark ! --mark 15 -j NFQUEUE --queue-num 0 ; iptables -t mangle -A OUTPUT -p sctp -m mark ! --mark 15 -j NFQUEUE --queue-num 0
+{{- end }}
+
+{{- define "ztxInitContainer" -}}
+{{ if .Values.ztx.enabled }}
+
+{{- $iptableRule := "ls" -}}
+
+{{- if .Values.ztx.tcp }}
+{{- $iptableRule = printf "%s ; %s " $iptableRule (include "tcpRule" .) }}
+{{- end }}
+
+{{- if .Values.ztx.udp }}
+{{- $iptableRule = printf "%s ; %s " $iptableRule (include "udpRule" .) }}
+{{- end }}
+
+{{- if .Values.ztx.sctp }}
+{{- $iptableRule = printf "%s ; %s " $iptableRule (include "sctpRule" .) }}
+{{- end }}
+
+{{- $iptableRule = printf "%s ; iptables-save" $iptableRule -}}
+
+- name: ztx-init
+  image: "{{ .Values.ztx.image.repository }}:{{ .Values.ztx.image.initTag }}"
+  securityContext:
+    capabilities:
+      add:
+      - NET_ADMIN
+    privileged: true
+  command: ['sh', '-c']
+  args:
+  - "{{ $iptableRule }}"
+{{ end }}
+{{- end -}}
+
+{{- define "ztxAppTemplate" -}}
+{{ if .Values.ztx.enabled }}
+- name: {{ .Values.ztx.name | quote }}
+  image: "{{ .Values.ztx.image.repository }}:{{ .Values.ztx.image.tag }}"
+  imagePullPolicy: {{ .Values.ztx.image.pullPolicy }}
+  securityContext:
+    capabilities:
+      add:
+      - NET_ADMIN
+      - NET_RAW
+    privileged: true
+    runAsGroup: 1592
+  command: ["/root/5gsec/src/ztx"]
+  env:
+  - name: ENCRYPTION_ENABLED
+    value: {{ .Values.ztx.encryption | default "false" | quote }}
+  - name: MY_IP
+    valueFrom:
+      fieldRef:
+        fieldPath: status.podIP
+{{ end }}
+{{- end -}}

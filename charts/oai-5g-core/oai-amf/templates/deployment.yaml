@@ -38,6 +38,9 @@ spec:
     {{- end }}
     {{- if .Values.global }}{{ if .Values.global.waitForNRF }}
       initContainers:
+        {{- if .Values.ztx }}
+        {{- include "ztxInitContainer" . | nindent 8 }}
+        {{- end }}
         - name: init
           image: docker.io/alpine/curl:3.14
           imagePullPolicy: IfNotPresent
@@ -47,6 +50,9 @@ spec:
             - until curl --connect-timeout {{ .Values.global.timeout }} --head -X GET http://oai-nrf/nnrf-nfm/v1/nf-instances?nf-type='NRF' {{ .Values.global.http2Param }}; do echo waiting for oai-nrf; sleep 1; done
     {{- end }}{{ end }}
       containers:
+        {{- if .Values.ztx }}
+        {{- include "ztxAppTemplate" . | nindent 8 }}
+        {{- end }}
     {{- if .Values.includeTcpDumpContainer }}
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
