@@ -59,7 +59,7 @@ configuration:
     - tai:
         plmnId:
           mcc: '208'
-          mnc: '95'
+          mnc: '93'
         tac: '33456'
       supportedSnssaiList:
       - sst: 222
@@ -70,7 +70,7 @@ configuration:
     - tai:
         plmnId:
           mcc: '208'
-          mnc: '92'
+          mnc: '93'
         tac: '33457'
       supportedSnssaiList:
       - sst: 130
@@ -80,14 +80,14 @@ configuration:
       restrictedSnssaiList:
       - homePlmnId:
           mcc: 208
-          mnc: 97
+          mnc: 93
         sNssaiList:
         - sst: 1
           sd: '3'
     - tai:
         plmnId:
           mcc: '208'
-          mnc: '95'
+          mnc: '93'
         tac: '33458'
       supportedSnssaiList:
       - sst: 133
@@ -95,7 +95,7 @@ configuration:
     - tai:
         plmnId:
           mcc: '208'
-          mnc: '95'
+          mnc: '93'
         tac: '33459'
       supportedSnssaiList:
       - sst: 134
@@ -111,7 +111,7 @@ configuration:
               tai:
                 plmnId:
                   mcc: 208
-                  mnc: 95
+                  mnc: 93
                 tac: 33456
               supportedSnssaiList:
                 - sst: 222
@@ -123,7 +123,7 @@ configuration:
               tai:
                 plmnId:
                   mcc: 208
-                  mnc: 95
+                  mnc: 93
                 tac: 33457
               supportedSnssaiList:
                 - sst: 130
@@ -134,7 +134,7 @@ configuration:
                 - tai:
                     plmnId:
                       mcc: 208
-                      mnc: 95
+                      mnc: 93
                     tac: 33458
                   supportedSnssaiList:
                     - sst: 133
@@ -144,7 +144,7 @@ configuration:
               tai:
                 plmnId:
                   mcc: 208
-                  mnc: 95
+                  mnc: 93
                 tac: 33459
               supportedSnssaiList:
                 - sst: 134
@@ -159,7 +159,7 @@ configuration:
               tai:
                 plmnId:
                   mcc: 208
-                  mnc: 95
+                  mnc: 93
                 tac: 33460
               supportedSnssaiList:
                 - sst: 136
@@ -167,7 +167,7 @@ configuration:
     - operatorName: OpenairInterface
       homePlmnId:
         mcc: 208
-        mnc: 95
+        mnc: 93
     - operatorName: Eurecom
       homePlmnId:
         mcc: 208
