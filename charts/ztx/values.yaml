@@ -1,0 +1,12 @@
+ztx:
+  enabled: false
+  encryption: false
+  tcp: false
+  udp: false
+  sctp: false
+  name: "ztx"
+  image:
+    repository: umakantk/ztx
+    pullPolicy: Always
+    tag: "v1"
+    initTag: "init"  

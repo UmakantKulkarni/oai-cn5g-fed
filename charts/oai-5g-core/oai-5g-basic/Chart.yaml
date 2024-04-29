@@ -23,6 +23,10 @@ maintainers:
     email: contact@openairinterface.org
 
 dependencies:
+- condition: ztx.enabled
+  name: ztx
+  repository: "file://../ztx"
+  version: 1.0.0
 - condition: mysql.enabled
   name: mysql
   repository: "file://../mysql"
