@@ -1,9 +1,9 @@
 ztx:
-  enabled: true
-  encryption: true
-  tcp: true
-  udp: true
-  sctp: true
+  enabled: false
+  encryption: false
+  tcp: false
+  udp: false
+  sctp: false
   name: "ztx"
   image:
     repository: umakantk/ztx

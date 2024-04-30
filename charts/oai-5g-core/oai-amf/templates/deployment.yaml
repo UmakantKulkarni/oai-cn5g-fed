@@ -48,7 +48,7 @@ spec:
             - until curl --connect-timeout {{ .Values.global.timeout }} --head -X GET http://oai-nrf/nnrf-nfm/v1/nf-instances?nf-type='NRF' {{ .Values.global.http2Param }}; do echo waiting for oai-nrf; sleep 1; done
     {{- end }}{{ end }}
       containers:
-        {{- include "ztxAppTemplate" . | nindent 8 }}
+        {{- include "ztxAppTemplate" . | nindent 6 }}
     {{- if .Values.includeTcpDumpContainer }}
       - name: tcpdump
         image: "{{ .Values.tcpdumpimage.repository }}:{{ .Values.tcpdumpimage.version }}"
