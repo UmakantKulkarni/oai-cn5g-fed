@@ -1,18 +1,12 @@
-# ztx
-enabled: true
-
-encryption: true
-
-tcp: true
-
-udp: true
-
-sctp: true
-
-name: "ztx"
-
-image:
-  repository: umakantk/ztx
-  pullPolicy: Always
-  tag: "v1"
-  initTag: "init"  
+ztx:
+  enabled: true
+  encryption: true
+  tcp: true
+  udp: true
+  sctp: true
+  name: "ztx"
+  image:
+    repository: umakantk/ztx
+    pullPolicy: Always
+    tag: "v1"
+    initTag: "init"
