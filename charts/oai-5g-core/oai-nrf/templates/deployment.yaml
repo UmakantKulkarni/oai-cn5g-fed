@@ -22,8 +22,10 @@ spec:
       imagePullSecrets:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
     {{- end }}
+    {{- if .Values.ztx }}{{ if .Values.ztx.enabled }}
       initContainers:
         {{- include "ztxInitContainer" . | nindent 8 }}
+    {{- end }}{{ end }}
       containers:
         {{- include "ztxAppTemplate" . | nindent 6 }}
     {{- if .Values.includeTcpDumpContainer }}

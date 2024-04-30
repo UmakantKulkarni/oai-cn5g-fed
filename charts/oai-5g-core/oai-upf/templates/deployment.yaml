@@ -55,9 +55,11 @@ spec:
       imagePullSecrets:
         {{ toYaml .Values.imagePullSecrets | indent 8 }}
     {{- end }}
-    {{- if .Values.global }}{{ if .Values.global.waitForNRF }}
+    {{- if or .Values.ztx .Values.global }}
+    {{ if or .Values.global.waitForNRF .Values.ztx.enabled }}
       initContainers:
         {{- include "ztxInitContainer" . | nindent 8 }}
+    {{ if .Values.global.waitForNRF }}
         - name: init
           image: docker.io/alpine/curl:3.14
           imagePullPolicy: IfNotPresent
@@ -65,7 +67,7 @@ spec:
             - /bin/sh
             - -c
             - until curl --connect-timeout {{ .Values.global.timeout }} --head -X GET http://oai-nrf/nnrf-nfm/v1/nf-instances?nf-type='NRF' {{ .Values.global.http2Param }}; do echo waiting for oai-nrf; sleep 1; done
-    {{- end }}{{ end }}
+    {{- end }}{{ end }}{{ end }}
       containers:
         {{- include "ztxAppTemplate" . | nindent 6 }}
     {{- if .Values.includeTcpDumpContainer }}
