@@ -46,5 +46,5 @@ maintainers:
 dependencies:
 - condition: ztx.enabled
   name: ztx
-  repository: "file://../ztx"
+  repository: "file://../../ztx"
   version: 1.0.0
