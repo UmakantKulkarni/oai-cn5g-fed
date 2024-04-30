@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "oai-amf.labels" . | nindent 4 }}
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   {{- if .Values.global }}{{ if not .Values.global.clusterIpServiceIpAllocation }}
   clusterIP: None
   {{- end }}{{ end }}
@@ -19,6 +19,7 @@ spec:
       port: {{ .Values.exposedPorts.sctp }}
       targetPort: {{ .Values.exposedPorts.sctp }}
       protocol: SCTP
+      nodePort:  {{ .Values.oai.amfn2.port | default 30412 }}
     {{- end }}
   selector:
     {{- include "oai-amf.selectorLabels" . | nindent 4 }}

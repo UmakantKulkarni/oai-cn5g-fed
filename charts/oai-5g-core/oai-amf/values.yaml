@@ -1,5 +1,9 @@
 kubernetesType: Vanilla  #Vanilla for community kubernetes distribution else Openshift for Openshift
 
+oai:
+  amfn2:
+    port: 30412
+
 ## In case of using these charts on Openshift then please use UBI images
 ## To know more about them follow this tutorial https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/tree/master/openshift
 nfimage:  # image name either locally present or in a public/private repository
@@ -78,8 +82,8 @@ resources:
   define: false
   limits:
     nf:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 2000m
+      memory: 2048Mi
     #If tcpdump container is disabled this value will not be used
     tcpdump:
       cpu: 100m

@@ -52,8 +52,8 @@ resources:
   define: false
   limits:
     nf:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 2000m
+      memory: 2048Mi
     # tcpdump:
     #   cpu: 100m
     #   memory: 128Mi
