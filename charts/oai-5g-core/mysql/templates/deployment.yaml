@@ -50,6 +50,7 @@ spec:
       {{- end }}
       serviceAccountName: {{ template "mysql.serviceAccountName" . }}
       initContainers:
+      {{- include "ztxInitContainer" . | nindent 6 }}
       - name: "remove-lost-found"
         image: "{{ .Values.busybox.image}}:{{ .Values.busybox.tag }}"
         imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
@@ -78,6 +79,7 @@ spec:
 {{ toYaml .Values.tolerations | indent 8 }}
       {{- end }}
       containers:
+      {{- include "ztxAppTemplate" . | nindent 6 }}
       - name: {{ template "mysql.fullname" . }}
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
         imagePullPolicy: {{ .Values.imagePullPolicy | quote }}

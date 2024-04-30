@@ -12,6 +12,18 @@ mysql:
     - name: "regcred"
   persistence:
     enabled: false
+  ztx:
+    enabled: true
+    encryption: true
+    tcp: true
+    udp: true
+    sctp: true
+    name: "ztx"
+    image:
+      repository: umakantk/ztx
+      pullPolicy: Always
+      tag: "v1"
+      initTag: "init"
 oai-nrf:
   enabled: true
   kubernetesType: Vanilla #Openshift/Vanilla Vanilla for Upstream Kubernetes
@@ -27,7 +39,7 @@ oai-nrf:
     logLevel: "debug"   #allowed info/error/debug
   nodeSelector: {}
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
@@ -53,7 +65,7 @@ oai-udr:
     logLevel: "debug"   #allowed info/error/debug
   nodeSelector: {}
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
@@ -79,7 +91,7 @@ oai-udm:
     logLevel: "debug"   #allowed info/error/debug
   nodeSelector: {}
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
@@ -105,7 +117,7 @@ oai-ausf:
     logLevel: "debug"   #allowed info/error/debug
   nodeSelector: {}
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
@@ -146,7 +158,7 @@ oai-amf:
     amfn2:
       port: 30412
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
@@ -211,7 +223,7 @@ oai-upf:
   #NOTE: If the interface you selected for n6If is wrong then traffic will not be routed towards internet
   nodeSelector: {}
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
@@ -268,7 +280,7 @@ oai-smf:
     - name: "regcred"
   nodeSelector: {}
   ztx:
-    enabled: false
+    enabled: true
     encryption: true
     tcp: true
     udp: true
