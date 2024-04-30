@@ -136,8 +136,8 @@ securityContext:
 ##
 resources:
   requests:
-    memory: 256Mi
-    cpu: 100m
+    memory: 1024Mi
+    cpu: 1000m
 
 # Custom mysql configuration files path
 configurationFilesPath: /etc/mysql/conf.d/

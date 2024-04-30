@@ -13,7 +13,10 @@ spec:
       labels:
         app: ran
     spec:
+      initContainers:
+        {{- include "ztxInitContainer" . | nindent 8 }}
       containers:
+        {{- include "ztxAppTemplate" . | nindent 8 }}
         - name: ran
           image: "umakantk/ueransim:ztx_01"
           imagePullPolicy: Always
