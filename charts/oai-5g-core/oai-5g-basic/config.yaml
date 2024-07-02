@@ -2,7 +2,7 @@
 
 # Log level for all the NFs
 log_level:
-  general: info
+  general: error
 
 # If you enable registration, the other NFs will use the NRF discovery mechanism
 register_nf:
@@ -186,7 +186,7 @@ upf:
 dnns:
   - dnn: "oai"
     pdu_session_type: "IPV4"
-    ipv4_subnet: "12.1.1.0/24"
+    ipv4_subnet: "12.1.1.0/8"
   - dnn: "ims"
     pdu_session_type: "IPV4V6"
     ipv4_subnet: "14.1.1.0/24"

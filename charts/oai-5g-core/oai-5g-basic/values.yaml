@@ -51,7 +51,7 @@ oai-nrf:
   imagePullSecrets:
     - name: "regcred"
   config:
-    logLevel: "debug"   #allowed info/error/debug
+    logLevel: "error"   #allowed info/error/debug
   #nodeSelector: {}
   nodeSelector:
     kubernetes.io/ztx-nf-type: amf
@@ -79,7 +79,7 @@ oai-udr:
   imagePullSecrets:
     - name: "regcred"
   config:
-    logLevel: "debug"   #allowed info/error/debug
+    logLevel: "error"   #allowed info/error/debug
   #nodeSelector: {}
   nodeSelector:
     kubernetes.io/ztx-nf-type: smf
@@ -107,7 +107,7 @@ oai-udm:
   imagePullSecrets:
     - name: "regcred"
   config:
-    logLevel: "debug"   #allowed info/error/debug
+    logLevel: "error"   #allowed info/error/debug
   #nodeSelector: {}
   nodeSelector:
     kubernetes.io/ztx-nf-type: smf
@@ -135,7 +135,7 @@ oai-ausf:
   imagePullSecrets:
     - name: "regcred"
   config:
-    logLevel: "debug"   #allowed info/error/debug
+    logLevel: "error"   #allowed info/error/debug
   #nodeSelector: {}
   nodeSelector:
     kubernetes.io/ztx-nf-type: amf
