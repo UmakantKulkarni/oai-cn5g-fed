@@ -151,7 +151,7 @@ DELIMITER //
 CREATE PROCEDURE AuthUsers()
 BEGIN
     DECLARE i INT DEFAULT 0;
-    WHILE i < 1200 DO
+    WHILE i < 5001 DO
         SET @ueid := 208930000000001 + i;
         SET @supi := 208930000000001 + i;
 
@@ -351,7 +351,7 @@ DELIMITER //
 CREATE PROCEDURE SmUsers()
 BEGIN
     DECLARE i INT DEFAULT 0;
-    WHILE i < 1200 DO
+    WHILE i < 5001 DO
         SET @ueid := 208930000000001 + i;
         SET @supi := 208930000000001 + i;
 
